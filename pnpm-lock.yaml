@@ -40,9 +40,6 @@ importers:
         specifier: ^8.20.0
         version: 8.20.0
     devDependencies:
-      '@repo/backend-secret':
-        specifier: workspace:*
-        version: link:../../packages/backend-secret
       prisma:
         specifier: ^7.5.0
         version: 7.5.0(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3)
@@ -55,6 +52,9 @@ importers:
       '@prisma/adapter-pg':
         specifier: ^7.5.0
         version: 7.5.0
+      '@prisma/client':
+        specifier: ^7.5.0
+        version: 7.5.0(prisma@7.5.0(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3))(typescript@5.9.3)
       dotenv:
         specifier: ^17.3.1
         version: 17.3.1
@@ -70,10 +70,13 @@ importers:
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
+      zod:
+        specifier: ^4.3.6
+        version: 4.3.6
     devDependencies:
-      '@repo/db-neon':
+      '@repo/backend-secret':
         specifier: workspace:*
-        version: link:../db-neon
+        version: link:../../packages/backend-secret
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
@@ -83,6 +86,12 @@ importers:
       '@types/jsonwebtoken':
         specifier: ^9.0.10
         version: 9.0.10
+      '@types/pg':
+        specifier: ^8.20.0
+        version: 8.20.0
+      prisma:
+        specifier: ^7.5.0
+        version: 7.5.0(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3)
 
   apps/web:
     dependencies:

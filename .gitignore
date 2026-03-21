@@ -36,3 +36,9 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+
+#Js files in packages
+packages/**/*.js
+
+#backend-secret file
+packages/backend-secret

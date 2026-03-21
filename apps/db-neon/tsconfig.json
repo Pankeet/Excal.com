@@ -5,11 +5,7 @@
     "target": "ES2023",
     "strict": true,
     "esModuleInterop": true,
-    "rootDir": "src",
-    "outDir": "dist",
     "declaration": true,
     "declarationMap": true
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "generated"]
 }
