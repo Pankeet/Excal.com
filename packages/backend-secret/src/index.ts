@@ -1,1 +1,1 @@
-export const DATABASE_URL = "postgresql://pankeet:%23IITbombay2027@localhost:5432/mydb"
+export const DATABASE_URL = "postgresql://pankeet123:%23ITb27@localhost:5432/mydb"
