@@ -3,11 +3,7 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-<<<<<<< HEAD
     "dev": "concurrently \"pnpm --filter web dev\" \"pnpm --filter http-server dev\"",
-=======
-    "dev": "concurrently \"pnpm --filter db-neon dev\" \"pnpm --filter http-server dev\"",
->>>>>>> 8d29b1fcf00b7258cd312f12251e28e45433d6c9
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"

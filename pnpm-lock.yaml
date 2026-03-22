@@ -51,12 +51,9 @@ importers:
       '@prisma/client':
         specifier: ^7.5.0
         version: 7.5.0(prisma@7.5.0(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3))(typescript@5.9.3)
-<<<<<<< HEAD
       bcrypt:
         specifier: ^6.0.0
         version: 6.0.0
-=======
->>>>>>> 8d29b1fcf00b7258cd312f12251e28e45433d6c9
       dotenv:
         specifier: ^17.3.1
         version: 17.3.1
