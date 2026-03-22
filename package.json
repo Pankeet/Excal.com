@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev": "concurrently \"pnpm --filter db-neon dev\" \"pnpm --filter http-server dev\"",
+    "dev": "concurrently \"pnpm --filter web dev\" \"pnpm --filter http-server dev\"",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"
@@ -17,8 +17,5 @@
   "packageManager": "pnpm@9.0.0",
   "engines": {
     "node": ">=18"
-  },
-  "dependencies": {
-    "zod": "^4.3.6"
   }
 }
