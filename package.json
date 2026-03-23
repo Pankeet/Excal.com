@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev": "concurrently \"pnpm --filter web dev\" \"pnpm --filter http-server dev\"",
+    "dev": "concurrently \"pnpm --filter http-server dev\" \"pnpm --filter ws-server dev\"",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"

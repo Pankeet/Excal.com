@@ -3,18 +3,22 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "build" : "tsc -b",
+    "build": "tsc -b",
     "start": "node dist/index.js",
-    "dev" : "tsc -b && node dist/index.js"
+    "dev": "tsc -b && node dist/index.js"
   },
   "dependencies": {
+    "@types/jsonwebtoken": "^9.0.10",
+    "jsonwebtoken": "^9.0.3",
     "typescript": "^5.9.3",
     "ws": "^8.19.0"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@types/ws": "^8.18.1"
+    "@types/ws": "^8.18.1",
+    "@repo/backend-secret":"workspace:*"
   },
   "keywords": [],
   "author": "",
