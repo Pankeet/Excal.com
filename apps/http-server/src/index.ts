@@ -2,16 +2,12 @@ import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import * as z from "zod";
-import { PrismaPg } from "@prisma/adapter-pg";
-import { PrismaClient } from "@prisma/client";
-import { DATABASE_URL as connectionString } from "@repo/backend-secret/dist/index.js";
 import { SALT_ROUNDS  } from "@repo/backend-secret/dist/index.js";
 import { JWT_SECRET } from "@repo/backend-secret/dist/index.js"; 
+import { prisma } from "./config/prisma-config.js";
 
 const app = express()
 app.use(express.json());
-const adapter = new PrismaPg({ connectionString });
-const prisma = new PrismaClient({ adapter });
 
 const User = z.object({
     username : z.string(),
@@ -84,7 +80,7 @@ app.post("/signin", async (req , res) => {
 });
 
 // Room Creation Endpoint
-app.post("/room", (req , res) => {
+app.post("/room",  async (req , res) => {
     
 })
 

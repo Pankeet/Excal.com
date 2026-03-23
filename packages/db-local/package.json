@@ -1,5 +1,5 @@
 {
-  "name": "@repo/db-neon",
+  "name": "@repo/db-local",
   "version": "1.0.0",
   "description": "",
   "scripts": {
