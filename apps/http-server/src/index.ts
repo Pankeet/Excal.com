@@ -95,4 +95,29 @@ app.post("/create-room",validate_user, async (req , res) => {
     }
 });
 
+app.get('/chats/:roomId',validate_user, async (req, res) => {
+    const roomId = Number(req.params.roomId);
+    try{
+        const messages = await prisma.chat.findMany({
+            where : {
+                roomId : roomId
+            },
+            orderBy : { 
+                id : "desc"
+            },
+            take : 20
+        })
+
+        return res.status(200).json({
+            messages
+        });
+
+    }catch(err){
+        console.error(err);
+        res.status(500).json({
+            message : "Failed to load messages !"
+        })
+}
+});
+
 app.listen(3001);

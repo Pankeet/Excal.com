@@ -10,15 +10,17 @@
     "dev": "tsc -b && node dist/index.js"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^7.5.0",
+    "@prisma/client": "^7.5.0",
     "@types/jsonwebtoken": "^9.0.10",
     "jsonwebtoken": "^9.0.3",
     "typescript": "^5.9.3",
     "ws": "^8.19.0"
   },
   "devDependencies": {
+    "@repo/backend-secret": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/ws": "^8.18.1",
-    "@repo/backend-secret":"workspace:*"
+    "@types/ws": "^8.18.1"
   },
   "keywords": [],
   "author": "",

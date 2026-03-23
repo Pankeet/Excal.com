@@ -1,6 +1,7 @@
 import { WebSocketServer, type WebSocket } from "ws";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "@repo/backend-secret/dist/index.js";
+import { prisma } from "./config/prisma-config.js";
 
 interface DecodedToken {
   userId: string;
@@ -33,7 +34,7 @@ function checkUser(token: string): string | null {
     if (!decoded || !decoded.userId) {
       return null;
     }
-    return decoded.email;
+    return decoded.userId;
   } catch (err) {
     console.error("JWT error:", err);
     return null;
@@ -58,7 +59,7 @@ wss.on("connection", (ws, request) => {
 
   users.set(userId, {socket: ws,rooms: new Set(),});
 
-  ws.on("message", (data) => {
+  ws.on("message", async (data) => {
     const user = users.get(userId);
     if (!user) return;
 
@@ -89,7 +90,7 @@ wss.on("connection", (ws, request) => {
     }
 
 // Join Room
-    if (parseData.type === "join") {
+    if (parseData.type === "join"){
       const room = rooms.get(parseData.roomId);
 
       if (!room) {
@@ -127,7 +128,7 @@ wss.on("connection", (ws, request) => {
 
 // Chat in Room
     if (parseData.type === "chat") {
-      const { roomId, message } = parseData;
+      const { roomId , message } = parseData;
 
       if (!user.rooms.has(roomId)) {
         sendError(ws, "Join room first");
@@ -141,10 +142,17 @@ wss.on("connection", (ws, request) => {
       }
 
       for (const uid of roomUsers) {
-        const u = users.get(uid);
-        if (!u) continue;
+        const user = users.get(uid);
+        if (!user) continue;
 
-        u.socket.send(JSON.stringify({
+        await prisma.chat.create({
+          data : {
+            message : message,
+            userId : userId,
+            roomId : Number(roomId)
+          }
+        })
+        user.socket.send(JSON.stringify({
             type: "chat",
             from: userId,
             roomId,
