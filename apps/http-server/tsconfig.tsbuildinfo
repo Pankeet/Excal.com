@@ -1,1 +1,1 @@
-{"root":["./src/global.d.ts","./src/index.ts","./src/config/prisma-config.ts","./src/middlewares/validate-user.ts","./src/zod/types.ts"],"version":"5.9.3"}
+{"root":["./src/global.d.ts","./src/index.ts","./src/middlewares/validate-user.ts","./src/zod/types.ts"],"version":"5.9.3"}

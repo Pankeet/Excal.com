@@ -1,7 +1,7 @@
 import { WebSocketServer, type WebSocket } from "ws";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "@repo/backend-secret/dist/index.js";
-import { prisma } from "./config/prisma-config.js";
+import { prisma } from "@repo/db-local/config/prisma-config.js";
 
 interface DecodedToken {
   userId: string;

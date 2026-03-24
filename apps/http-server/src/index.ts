@@ -3,8 +3,9 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { SALT_ROUNDS  } from "@repo/backend-secret/dist/index.js";
 import { JWT_SECRET } from "@repo/backend-secret/dist/index.js"; 
-import { prisma } from "./config/prisma-config.js";
+import { prisma } from "@repo/db-local/config/prisma-config.js";
 import { User } from "./zod/types.js";
+import { SiginSchema } from "./zod/types.js";
 import validate_user from "./middlewares/validate-user.js";
 
 const app = express()
@@ -52,25 +53,33 @@ app.post("/signup", async (req , res) => {
 
 // SigIn Endpoint Completed (✔️)
 app.post("/signin", async (req , res) => {
-    const { username, password } = req.body;
-    const findUser = await prisma.user.findMany({where : {username: username}});
-    if(findUser.length === 0) return res.status(401).json({
-        message : "User does not Exsists !"
-    })
-    else{
-        for (const user of findUser){
-            var password_cmp = await bcrypt.compare(password, user.password)
-            if(password_cmp) {
-                const token = jwt.sign({userId : user.id,email : user.email},JWT_SECRET,{"expiresIn": '6h'});
-                return res.status(200).json({
-                    message : "Signin Successful",
-                    token : token
-                })
-            }
-        }
-        return res.status(401).json({
-            message : "Invalid Credentials !"
+    const signDetails = SiginSchema.safeParse(req.body);
+    if(!signDetails.success) {
+        return res.status(422).json({
+            message : "Invalid Semantics"
         });
+    }
+    else{
+        const { username, password } = signDetails.data;
+        const findUser = await prisma.user.findMany({where : {username: username}});
+        if(findUser.length === 0) return res.status(401).json({
+            message : "User does not Exsists !"
+        });
+        else{
+            for (const user of findUser){
+                const password_cmp = await bcrypt.compare(password, user.password);
+                if(password_cmp) {
+                    const token = jwt.sign({userId : user.id,email : user.email},JWT_SECRET,{"expiresIn": '6h'});
+                    return res.status(200).json({
+                        message : "Signin Successful",
+                        token : token
+                    })
+                }
+            }
+            return res.status(401).json({
+                message : "Invalid Credentials !"
+            });
+        }
     }
 });
 

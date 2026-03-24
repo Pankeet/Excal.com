@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@repo/backend-secret": "workspace:*",
+    "@repo/db-local": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.6",
