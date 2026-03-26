@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { SALT_ROUNDS  } from "@repo/backend-secret/dist/index.js";
@@ -8,12 +9,13 @@ import { User } from "./zod/types.js";
 import { SiginSchema } from "./zod/types.js";
 import validate_user from "./middlewares/validate-user.js";
 
-const app = express()
+const app = express();
 app.use(express.json());
+app.use(cors());
 
 
 // SignUp Endpoint Completed (✔️)
-app.post("/signup", async (req , res) => {
+app.post("/api/v1/signup", async (req , res) => {
     const userDetails = User.safeParse(req.body);
     if(!userDetails.success) {
         return res.status(422).json({
@@ -52,7 +54,7 @@ app.post("/signup", async (req , res) => {
 
 
 // SigIn Endpoint Completed (✔️)
-app.post("/signin", async (req , res) => {
+app.post("/api/v1/signin", async (req , res) => {
     const signDetails = SiginSchema.safeParse(req.body);
     if(!signDetails.success) {
         return res.status(422).json({
@@ -129,4 +131,4 @@ app.get('/chats/:roomId',validate_user, async (req, res) => {
 }
 });
 
-app.listen(3001);
+app.listen(8000);
