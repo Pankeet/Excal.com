@@ -15,7 +15,6 @@ Excal.draw is a sophisticated, full-stack web application that provides seamless
 - **Persistent Session Management**: Drawing sessions are maintained and can be resumed, with comprehensive state preservation throughout user interactions.
 
 ### Communication
-- **Integrated Chat Functionality**: A fully-featured messaging interface enabling real-time communication amongst participants within a drawing session.
 - **Contextual Messaging**: Chat messages are contextually bound to specific drawing sessions, facilitating focused collaboration and discussion.
 
 ### User Interface and Experience
@@ -36,7 +35,6 @@ This project employs a monorepo pattern managed through **Turborepo** and **pnpm
 1. **excal-fe** – Next.js Frontend Application
    - Modern React 19 interface with Next.js 16.2.1
    - Real-time drawing canvas implementation
-   - Chat interface for user communication
    - Responsive design with Tailwind CSS v4
    - Optimised asset loading and code splitting
 
